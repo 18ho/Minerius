@@ -1,0 +1,122 @@
+.element {
+    border: 2px solid;
+    border-color: #00000033;
+    height: 915px;
+    position: relative;
+    width: 412px;
+}
+
+.element .overlap {
+    background-color: #f2f8ff;
+    height: 350px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 412px;
+}
+
+.element .minerius-removebg {
+    height: 218px;
+    left: 66px;
+    object-fit: cover;
+    position: absolute;
+    top: 25px;
+    width: 280px;
+}
+
+.element .group {
+    height: 31px;
+    left: 41px;
+    position: absolute;
+    top: 279px;
+    width: 331px;
+}
+
+.element .text-wrapper {
+    color: #343d4c;
+    font-family: "Pretendard-Medium", Helvetica;
+    font-size: 26px;
+    font-weight: 500;
+    height: 31px;
+    left: 0;
+    letter-spacing: -0.65px;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    white-space: nowrap;
+}
+
+.element .overlap-group-wrapper {
+    height: 65px;
+    left: 46px;
+    position: absolute;
+    top: 421px;
+    width: 322px;
+}
+
+.element .overlap-group {
+    background-color: #dadada4c;
+    border-radius: 10px;
+    height: 65px;
+    position: relative;
+    width: 320px;
+}
+
+.element .div {
+    color: #343d4c;
+    font-family: "Pretendard-Medium", Helvetica;
+    font-size: 24px;
+    font-weight: 500;
+    height: 22px;
+    left: 69px;
+    letter-spacing: -0.60px;
+    line-height: normal;
+    position: absolute;
+    top: 22px;
+    white-space: nowrap;
+    width: 182px;
+}
+
+.element .overlap-wrapper {
+    height: 65px;
+    left: 46px;
+    position: absolute;
+    top: 506px;
+    width: 322px;
+}
+
+.element .div-wrapper {
+    background-color: #dadada4c;
+    border-radius: 10px;
+    height: 65px;
+    left: 46px;
+    position: absolute;
+    top: 591px;
+    width: 320px;
+}
+
+.element .overlap-2 {
+    background-color: #4a90e2;
+    border-radius: 10px;
+    height: 65px;
+    left: 46px;
+    position: absolute;
+    top: 676px;
+    width: 320px;
+}
+
+.element .text-wrapper-2 {
+    color: #ffffff;
+    font-family: "Pretendard-Medium", Helvetica;
+    font-size: 26px;
+    font-weight: 500;
+    height: 31px;
+    left: 137px;
+    letter-spacing: -0.65px;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 17px;
+    white-space: nowrap;
+}
