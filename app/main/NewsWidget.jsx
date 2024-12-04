@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Image, Text, TouchableOpacity, Linking } from 'react-native';
+import { View, ScrollView, Image, Text, TouchableOpacity, Linking, StyleSheet } from 'react-native';
 import axios from 'axios';
 import cheerio from 'cheerio-without-node-native';
 
@@ -17,7 +17,7 @@ export const NewsWidget = () => {
                 const response = await axios.get(BASE_URL, {
                     params: {
                         query: '날씨',
-                        display: 5,
+                        display: 2,
                         sort: 'date'
                     },
                     headers: {
@@ -73,34 +73,105 @@ export const NewsWidget = () => {
     };
 
     return (
-        <ScrollView>
-            {articles.map((article, index) => (
-                <View style={{ margin: 20 }} key={index}>
-                    <TouchableOpacity onPress={() => handlePress(article.link)}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <View style={{ flex: 8, marginRight: 10 }}>
-                                <Text style={{ fontWeight: 'bold' }}>
+        <View style={styles.container}>
+            <Text style={styles.text}>뉴스 ></Text>
+            <ScrollView style={styles.wrapper}>
+                {articles.map((article, index) => (
+                    <TouchableOpacity
+                        key={index}
+                        style={styles.newsCard}
+                        onPress={() => handlePress(article.link)}
+                    >
+                        <View style={styles.cardContent}>
+                            <View style={styles.textContainer}>
+                                <Text style={styles.title}>
                                     {article.title.replace(/<[^>]+>/g, '').replace(/&quot;/g, '"')}
                                 </Text>
-                                <Text>{new Date().getHours() - (new Date(article.pubDate).getHours())} 시간 전</Text>
+                                <Text style={styles.subtitle}>
+                                    {new Date().getHours() - (new Date(article.pubDate).getHours())} 시간 전
+                                </Text>
                             </View>
                             {imageUrls[index] ? (
-                                <View style={{ flex: 2, width: 80, height: 80 }}>
-                                    <Image
-                                        source={{ uri: imageUrls[index] }}
-                                        style={{ width: '100%', height: '100%', resizeMode: 'cover' }}
-                                    />
-                                </View>
+                                <Image
+                                    source={{ uri: imageUrls[index] }}
+                                    style={styles.image}
+                                />
                             ) : (
-                                <Text>이미지가 없습니다.</Text>
+                                <View style={styles.imagePlaceholder}>
+                                    <Text style={styles.noImageText}>이미지 없음</Text>
+                                </View>
                             )}
                         </View>
                     </TouchableOpacity>
-                </View>
-            ))}
-        </ScrollView>
+                ))}
+            </ScrollView>
+        </View>
     );
 };
 
-export default NewsWidget;
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#FFFFFF',
+        padding: 10,
+    },
+    wrapper:{
+        backgroundColor: '#FFFFFF',
+        borderRadius: 30,
+        padding: 10,
+    },
+    newsCard: {
+        backgroundColor: '#F4F4F4',
+        borderRadius: 0,
+        marginLeft : 10,
+        marginRight : 10,
+        padding: 20,
+        paddingTop: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+    },
+    text: {
+        color: '#A6A6A6',
+        fontWeight: 'bold',
+        paddingLeft: 20,
+    },
+    cardContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    textContainer: {
+        flex: 8,
+        paddingRight: 10,
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        color: '#333',
+    },
+    subtitle: {
+        fontSize: 14,
+        color: '#999',
+    },
+    image: {
+        flex: 2,
+        width: 80,
+        height: 80,
+        borderRadius: 5,
+        resizeMode: 'cover',
+    },
+    imagePlaceholder: {
+        flex: 2,
+        width: 80,
+        height: 80,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#E0E0E0',
+        borderRadius: 5,
+    },
+    noImageText: {
+        fontSize: 12,
+        color: '#999',
+    },
+});
 
+export default NewsWidget;
